@@ -12,7 +12,13 @@ def test_original_model():
     """Test your original model specification."""
     
     load_dotenv()
-    api_key = os.getenv('GEMINI_API_KEY', '***REMOVED_API_KEY***')
+    api_key = os.getenv('GEMINI_API_KEY')
+    
+    if not api_key:
+        print("❌ Error: GEMINI_API_KEY not found in environment variables")
+        print("Please set your API key in the .env file:")
+        print("***REMOVED_GEMINI_KEY***your_actual_api_key_here")
+        return False
     
     # Your original model
     model_name = "gemini-2.5-flash-preview-05-20"
@@ -50,7 +56,7 @@ def test_original_model():
     print("🧪 Testing Your Original Model")
     print("=" * 50)
     print(f"Model: {model_name}")
-    print(f"API Key: {api_key[:20]}...{api_key[-10:]}")
+    print(f"API Key: {'*' * 20}...{'*' * 10} (loaded from .env)")
     print()
     
     try:
